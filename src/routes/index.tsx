@@ -5,48 +5,38 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import NotFoundPage from "../pages/common/NotFoundPage";
-
-import authRoutes from "./authRoutes";
-import adminRoutes from "./adminRoutes";
-import studentRoutes from "./studentRoutes";
-import teacherRoutes from "./teacherRoutes";
-
-import { RoleEnum } from "../common/types";
-import { commonRoutes } from "./commonRoutes";
+import { RoleEnum } from "@/types/User";
+import { clientRoutes } from "./client";
+import authRoutes from "./auth";
+import adminRoutes from "./admin";
 
 const getRedirectPath = (user: { role: RoleEnum } | null) => {
   if (!user) return "/";
   switch (user.role) {
     case RoleEnum.SUPER_ADMIN:
-      return "/super-admin/users";
-    case RoleEnum.TEACHER:
-      return "/teacher/classes";
-    case RoleEnum.STUDENT:
-      return "/student/classes";
+      return "/super-admin/dashboard";
+    case RoleEnum.ADMIN:
+      return "/admin/dashboard";
+    case RoleEnum.CLIENT:
+      return "/";
     default:
       return "/login";
   }
 };
 
 const routes: RouteObject[] = [
-  ...commonRoutes,
+  ...clientRoutes,
   {
     path: "/",
-    element:
-      // Chuyển hướng nếu đã đăng nhập, nếu không hiển thị HomePage (được bọc trong commonRoutes)
-      JSON.parse(localStorage.getItem("user") || "null") && (
-        <Navigate
-          to={getRedirectPath(
-            JSON.parse(localStorage.getItem("user") || "null")
-          )}
-          replace
-        />
-      ),
+    element: JSON.parse(localStorage.getItem("user") || "null") && (
+      <Navigate
+        to={getRedirectPath(JSON.parse(localStorage.getItem("user") || "null"))}
+        replace
+      />
+    ),
   },
   ...authRoutes,
   ...adminRoutes,
-  ...teacherRoutes,
-  ...studentRoutes,
   { path: "*", element: <NotFoundPage /> },
 ];
 

@@ -1,15 +1,16 @@
 import { RouteObject } from "react-router-dom";
-import { RoleEnum } from "../common/types";
-import AdminLayout from "../components/layouts/AdminLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import UserManagermentPage from "@/pages/admin/UserManagermentPage";
+import LayoutAdmin from "@/layouts/LayoutAdmin";
+import { RoleEnum } from "@/types/User";
 
 const adminRoutes: RouteObject[] = [
-  // * SuperAdmin Routes (Phòng đào tạo)
+  // * SuperAdmin Routes
   {
     path: "/super-admin",
     element: (
       <ProtectedRoute allowedRoles={[RoleEnum.SUPER_ADMIN]}>
-        <AdminLayout />
+        <LayoutAdmin />
       </ProtectedRoute>
     ),
     children: [
@@ -17,17 +18,23 @@ const adminRoutes: RouteObject[] = [
         path: "users",
         element: <UserManagermentPage />,
       },
+
+      // * Thêm các route khác dành cho SuperAdmin ở đây
+    ],
+  },
+
+  // * Nếu dưới quyền super admin còn admin, manager... thì thêm các route ở đây:
+  {
+    path: "/admin",
+    element: (
+      <ProtectedRoute allowedRoles={[RoleEnum.ADMIN, RoleEnum.SUPER_ADMIN]}>
+        <LayoutAdmin />
+      </ProtectedRoute>
+    ),
+    children: [
       {
-        path: "majors",
-        element: <MajorManagermentPage />,
-      },
-      {
-        path: "subjects",
-        element: <SubjectManagermentPage />,
-      },
-      {
-        path: "classes",
-        element: <ClassManagermentPage />,
+        path: "users",
+        element: <UserManagermentPage />,
       },
     ],
   },
