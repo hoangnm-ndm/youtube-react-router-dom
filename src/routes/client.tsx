@@ -1,23 +1,17 @@
-import CommonLayout from "@/components/layouts/CommonLayout";
-import HomePage from "@/pages/common/HomePage";
-import PrivacyPage from "@/pages/common/PrivacyPage";
-import TermsPage from "@/pages/common/TermsPage";
+import LayoutClient from "@/layouts/LayoutClient";
+import HomePage from "@/pages/client/HomePage";
+import PrivacyPage from "@/pages/client/PrivacyPage";
+import TermsPage from "@/pages/client/TermsPage";
 import { RouteObject } from "react-router-dom";
 
-export const commonRoutes: RouteObject[] = [
+export const clientRoutes: RouteObject[] = [
   {
-    element: <CommonLayout />,
+    element: <LayoutClient />,
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/privacy", element: <PrivacyPage /> },
       { path: "/terms", element: <TermsPage /> },
-
       { path: "/about", element: <div>Giới thiệu (Chưa triển khai)</div> },
-      { path: "/courses", element: <div>Khóa học (Chưa triển khai)</div> },
-      {
-        path: "/philosophy",
-        element: <div>Triết lý đào tạo (Chưa triển khai)</div>,
-      },
       { path: "/contact", element: <div>Liên hệ (Chưa triển khai)</div> },
     ],
   },
