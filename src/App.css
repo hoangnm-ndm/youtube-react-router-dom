@@ -3,3 +3,16 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+form {
+  width: 440px;
+  margin: 100px auto;
+  border: 1px solid #ccc;
+  padding: 48px 32px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  box-shadow: 12px 12px 12px rgba(45, 45, 84, 0.5);
+}

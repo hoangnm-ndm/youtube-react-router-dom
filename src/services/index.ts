@@ -8,7 +8,7 @@ interface ApiError {
 }
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:8888/api",
+  baseURL: "https://api-class-o1lo.onrender.com/api/hoangnm/",
   headers: {
     "Content-Type": "application/json",
   },
