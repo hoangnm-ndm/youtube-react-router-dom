@@ -1,20 +1,5 @@
-import { RoleEnum } from "@/types/User";
+import { RoleEnum, UserCreatePayload, UserLoginPayload } from "@/types/User";
 import apiClient from ".";
-
-interface RegisterPayload {
-  role: RoleEnum;
-  email: string;
-  password: string;
-  fullname: string;
-  username: string;
-  phone?: string;
-}
-
-interface LoginPayload {
-  email: string;
-  password: string;
-}
-
 interface UserResponse {
   _id: string;
   role: RoleEnum;
@@ -29,7 +14,7 @@ interface LoginResponse {
 }
 
 export const registerUser = async (
-  payload: RegisterPayload
+  payload: UserCreatePayload
 ): Promise<UserResponse> => {
   const response = await apiClient.post<UserResponse>(
     "/auth/register",
@@ -38,7 +23,7 @@ export const registerUser = async (
   return response.data;
 };
 
-export const loginUser = async (payload: LoginPayload): Promise<any> => {
+export const loginUser = async (payload: UserLoginPayload): Promise<any> => {
   const response = await apiClient.post("/auth/login", payload);
   return response.data.data;
 };
