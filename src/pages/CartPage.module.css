@@ -169,14 +169,6 @@
   background: #333;
 }
 
-.continueBtn {
-  display: block;
-  text-align: center;
-  margin-top: 12px;
-  color: #666;
-  text-decoration: none;
-}
-
 /* Empty state */
 .empty {
   text-align: center;
@@ -186,4 +178,16 @@
 .empty img {
   width: 200px;
   margin-bottom: 20px;
+}
+
+.continueBtn {
+  display: block;
+  width: 260px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 24px auto 0;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: underline;
 }

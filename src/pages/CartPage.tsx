@@ -18,7 +18,7 @@ export default function CartPage() {
         <i className="fa-solid fa-basket-shopping"></i>
         <h2>Giỏ hàng trống</h2>
         <p>Bạn chưa thêm sản phẩm nào</p>
-        <Link to="/" className={styles.checkoutBtn}>
+        <Link to="/" className={styles.continueBtn}>
           Tiếp tục mua sắm
         </Link>
       </div>
